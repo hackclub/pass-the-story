@@ -5,9 +5,120 @@ body {
   margin: 0;
   border: 0;
 }
+
+main {
+  height: 100vh;
+  width: 100%;
+  padding: 4rem 2rem;
+  display: flex;
+}
 iframe {
   border: 0;
   width: 100vw;
   height: 100vh;
   display: block;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 28px;
+  margin-top: 1rem;
+}
+
+.left,
+.right {
+  width: 25%;
+}
+
+.tree-section {
+  height: 100%;
+  width: 100%;
+  flex-grow: 1;
+}
+
+.tree {
+  position: relative;
+  width: max-content;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.tree > svg {
+  height: 100%;
+  width: 100%;
+}
+
+.ornaments {
+  position: absolute;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  place-items: center;
+  counter-reset: ornaments;
+  list-style: none;
+}
+
+.ornament {
+  aspect-ratio: 1;
+  height: 45%;
+  background-color: #ebedbe;
+  counter-increment: ornaments;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ornament:before {
+  content: counter(ornaments);
+}
+
+.ornament:nth-child(1) {
+  grid-column: 3;
+}
+
+.ornament:nth-child(2) {
+  grid-column: 2 / span 2;
+}
+
+.ornament:nth-child(3) {
+  grid-column: 2;
+}
+
+.ornament:nth-child(4) {
+  grid-column: 3 / span 2;
+}
+
+.ornament:nth-child(5) {
+  grid-column: 2 / span 2;
+}
+
+.ornament:nth-child(7) {
+  grid-column: 2;
+}
+
+.ornament:nth-child(9) {
+  grid-column: span 2;
+}
+
+.ornament:nth-child(10) {
+  grid-column: 2 / span 2;
+}
+
+.ornament:nth-child(12) {
+  grid-column: 1;
+}
+
+.ornament:nth-child(3n) {
+  transform: translateY(-75%);
+}
+
+.ornament:nth-child(2n) {
+  transform: translateY(30%);
 }
