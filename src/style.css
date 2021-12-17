@@ -1,22 +1,78 @@
-* {
+*,
+::before,
+::after {
   box-sizing: border-box;
 }
+
+:root {
+  --border: 10px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   border: 0;
 }
 
-main {
-  height: 100vh;
-  width: 100%;
+main > section > div {
   padding: 4rem 2rem;
   display: flex;
+  width: 100%;
+  height: 100%;
 }
+
 iframe {
   border: 0;
-  width: 100vw;
+  position: absolute;
+  width: calc(100% - 20px);
+  height: calc(100% - 20px);
+  top: var(--border);
+  left: var(--border);
+  bottom: var(--border);
+  right: var(--border);
+}
+
+section {
   height: 100vh;
+  width: 100%;
+  position: relative;
   display: block;
+}
+
+section::before {
+  background: var(--red);
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--red),
+    var(--red) 12px,
+    transparent 12px,
+    transparent 24px,
+    var(--blue) 24px,
+    var(--blue) 36px,
+    transparent 36px,
+    transparent 48px
+  );
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: -1;
+}
+
+section::after {
+  background-color: white;
+  content: "";
+  position: absolute;
+  top: var(--border);
+  left: var(--border);
+  bottom: var(--border);
+  right: var(--border);
+  z-index: -1;
 }
 
 h1 {
@@ -39,12 +95,12 @@ a {
 .left,
 .right {
   width: 25%;
+  min-width: 25%;
 }
 
 .tree-section {
   height: 100%;
   width: 100%;
-  flex-grow: 1;
 }
 
 .tree {
@@ -68,23 +124,24 @@ a {
   margin: 0;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   place-items: center;
-  counter-reset: ornaments;
   list-style: none;
 }
 
 .ornament {
   aspect-ratio: 1;
   height: 45%;
-  background-color: #ebedbe;
-  counter-increment: ornaments;
+  background: var(--white);
   border-radius: 50%;
+}
+
+.ornament > a {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.ornament:before {
-  content: counter(ornaments);
+  width: 100%;
+  height: 100%;
+  color: black;
+  font-weight: bold;
 }
 
 .ornament:nth-child(1) {
@@ -125,8 +182,15 @@ a {
 
 .ornament:nth-child(3n) {
   transform: translateY(-75%);
+  background: var(--red);
 }
 
 .ornament:nth-child(2n) {
   transform: translateY(30%);
+  background: var(--blue);
+}
+
+.ornament:nth-child(2n) > a,
+.ornament:nth-child(3n) > a {
+  color: white;
 }
