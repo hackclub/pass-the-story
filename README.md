@@ -29,7 +29,3 @@ by removing the `<!--` and `-->` to leave
 
 5. Continue the story created by others by adding some sentences and visuals to your page. If you would like a starting point, you can copy [`templates/template.html`](https://github.com/maggie-j-liu/story/blob/main/templates/template.html) and modify it!
 6. [Create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to add your changes back to this repository.
-
-```
-
-```
