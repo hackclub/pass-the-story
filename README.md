@@ -11,7 +11,7 @@ Each page of the story is created in a directory under `src/pages`, and each pag
 3. You're assigned a page number. Create a directory under `src/pages` with the number you are assigned. Add an `index.html` file and any css files you need.
 4. Add the page to the site by uncommenting the `section` in [`src/index.html`](https://github.com/maggie-j-liu/story/blob/main/src/index.html) that contains your page. For example, page 1 can be included by uncommenting
 
-```
+```html
 <!--
 <section>
   <iframe src="/pages/1" id="page-1"></iframe>
@@ -21,7 +21,7 @@ Each page of the story is created in a directory under `src/pages`, and each pag
 
 by removing the `<!--` and `-->` to leave
 
-```
+```html
 <section>
   <iframe src="/pages/1" id="page-1"></iframe>
 </section>
