@@ -79,6 +79,11 @@ h1 {
   font-size: 40px;
 }
 
+.github-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
 h2 {
   font-size: 28px;
   margin-top: 1rem;
