@@ -1,4 +1,7 @@
+[build]
+  base = "src/"
+
 [[headers]]
-  for = "/src*"
+  for = "/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"
