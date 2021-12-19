@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="https://unpkg.com/jquery.terminal/js/jquery.terminal.min.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/jquery.terminal/css/jquery.terminal.min.css"
+    />
+  </head>
+  <body>
+    <script>
+
+      $("body").terminal(
+        {
+          hello: function (what) {
+            this.echo("Hello, " + what + ". Wellcome to this terminal.");
+          },
+          hack: function () {
+            this.echo(`
+            
+░█▀▀░█▀█░▀█▀░█▀▀░█▀▄░▀█▀░█▀█░█▀▀░░░█▀▄░█▀▄░█▀█░▀█▀░█▀█░░░█▀▀░█▀█░▀█▀░█▀▀░░░░░░░░░
+░█▀▀░█░█░░█░░█▀▀░█▀▄░░█░░█░█░█░█░░░█▀▄░█▀▄░█▀█░░█░░█░█░░░█░█░█▀█░░█░░█▀▀░░░░░░░░░
+░▀▀▀░▀░▀░░▀░░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░░░▀▀░░▀░▀░▀░▀░▀▀▀░▀░▀░░░▀▀▀░▀░▀░░▀░░▀▀▀░▀░░▀░░▀░     
+                                                                                                                                             
+instructions for use
+command: function
+
+ls: see who's brain you can enter
+cd <name>: enter name's brain
+shh: to find out a secret ( do not type this command )
+
+`);
+          },
+          ls: function () {
+            this.echo(`
+Badlo
+Latte
+AgentSquirrel
+CodyHipo
+HackerMan
+            `);
+          },
+          cd: function (name) {
+              if(name == 'Badlo' || name == 'badlo'){
+                  this.echo(`
+                _|------------------------------------------------------------------------------|_
+              _|                                                                                  |_
+             |_                         I have the ALLLL the Hack Coins!!                          _|
+          _    |_                                                                                _|
+       _ |_|     |------------------------------------------------------------------------------|
+    _ |_|   
+   |_|            
+`);
+              } else if(name == 'AgentSquirrel' || name == 'agentsquirrel'){
+                  this.echo((`
+                _|------------------------------------------------------------------------------|_
+              _|                                                                                  |_
+             |_                         I'm so tired of Badlo's charades                           _|
+          _    |_                                                                                _|
+       _ |_|     |------------------------------------------------------------------------------|
+    _ |_|   
+   |_|            
+`))
+              } else if(name == 'CodyHipo' || name == 'codyhipo'){
+                  this.echo(`
+                _|------------------------------------------------------------------------------|_
+              _|                                                                                  |_
+             |_         Who's the best freelance developer on Hack Island?? I am, I am, I am!      _|
+          _    |_                                                                                _|
+       _ |_|     |------------------------------------------------------------------------------|
+    _ |_|   
+   |_|            
+`)
+              } else if(name == 'Latte' || name == 'latte'){
+                  this.echo((`
+                _|------------------------------------------------------------------------------|_
+              _|                                                                                  |_
+             |_       This christmas, I shall steal Hack Club from my twin brother, Zach Latta     _|
+          _    |_                                                                                _|
+       _ |_|     |------------------------------------------------------------------------------|
+    _ |_|   
+   |_|            
+
+Oh no! What will you do? Read on to find out!
+
+`))
+                } else if(name == 'HackerMan' || name == 'hackerman'){
+                  this.echo(`
+
+                _|-----------------------------------------------------------------------------|_
+              _|                                                                                 |_
+             |_                   Can't wait to foil another one of Badlo's plans                 _|
+          _    |_                                                                                _|
+       _ |_|     |------------------------------------------------------------------------------|
+    _ |_|   
+   |_|            
+                  `)
+              } else {
+                  this.echo('no such person, type ls to find out possible brains to infiltrate')
+              }
+          },
+          shh: function () {
+            this.echo(`
+░█░█░█░█░█░█░░░█▀█░█▀▄░█▀▀░░░█░█░█▀█░█░█░░░█▀▀░█▀█░░░█▀█░█▀▄░█▀▀░█▀▄░▀█▀░█▀▀░▀█▀░█▀█░█▀▄░█░░░█▀▀░▀▀█
+░█▄█░█▀█░░█░░░░█▀█░█▀▄░█▀▀░░░░█░░█░█░█░█░░░▀▀█░█░█░░░█▀▀░█▀▄░█▀▀░█░█░░█░░█░░░░█░░█▀█░█▀▄░█░░░█▀▀░░▀░
+░▀░▀░▀░▀░░▀░░░░▀░▀░▀░▀░▀▀▀░░░░▀░░▀▀▀░▀▀▀░░░▀▀▀░▀▀▀░░░▀░░░▀░▀░▀▀▀░▀▀░░▀▀▀░▀▀▀░░▀░░▀░▀░▀▀░░▀▀▀░▀▀▀░░▀░                                                                                                                                                                                                       
+Anyways, you and your friends decide to check out what Zach Latte is thinking, type 'cd Latte' to continue
+`);
+          },
+        },
+        {
+          greetings: "Your super evil and secret terminal that acccess brains \n To get started, type 'hack'",
+        }
+      );
+    </script>
+  </body>
+</html>
