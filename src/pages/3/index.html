@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body { margin: 0px; padding: 0px; overflow: hidden; }
+    </style>
+    <script>'use strict';
+      window.onload = async () => {
+/* maffs */
+class Vec2 {
+  constructor(x = 0, y = 0) { this.x = x; this.y = y;}
+  static x2(f) { return new Vec2(f, f); }
+  arr() { return [this.x, this.y] }
+  clone() { return new Vec2(this.x, this.y) }
+
+  mulf(f) { return new Vec2(this.x * f, this.y * f); }
+  divf(f) { return new Vec2(this.x / f, this.y / f); }
+  addf(f) { return new Vec2(this.x + f, this.y + f); }
+  subf(f) { return new Vec2(this.x - f, this.y - f); }
+
+  mul(o) { return new Vec2(this.x * o.x, this.y * o.y); }
+  div(o) { return new Vec2(this.x / o.x, this.y / o.y); }
+  add(o) { return new Vec2(this.x + o.x, this.y + o.y); }
+  sub(o) { return new Vec2(this.x - o.x, this.y - o.y); }
+
+  maxf(f) { return new Vec2(Math.max(f, this.x), Math.max(f, this.y)); }
+  minf(f) { return new Vec2(Math.min(f, this.x), Math.min(f, this.y)); }
+
+  dot(o) { return this.x*o.x + this.y*o.y; }
+  mag() { return Math.sqrt(this.dot(this)); }
+  norm() { return this.divf(this.mag() || 1); }
+
+  perp(v) { return new Vec2(v.y, -v.x) }
+  lerp(o, t) { return this.mulf(1 - t).add(o.mulf(t)); }
+
+  toRot() { return Math.atan2(this.y, this.x); }
+  static fromRot(rot) { return new Vec2(Math.cos(rot), Math.sin(rot)); }
+}
+
+function move(vec) { ctx.translate(vec.x, vec.y); }
+
+function rect(pos, size, color) {
+  ctx.fillStyle = color;
+  const { x, y } = pos.sub(size.divf(2));
+  ctx.fillRect(x, y, size.x, size.y);
+}
+function circ(pos, size, color) {
+  ctx.fillStyle = color;
+  ctx.beginPath()
+  ctx.ellipse(pos.x, pos.y, size.x, size.y, 0.0, 0.0, Math.PI*2);
+  ctx.fill();
+}
+
+function drawLatte(pos) {
+  ctx.save();
+
+  let t = Math.sin(performance.now() * 0.008);
+  t *= Math.max(1.0, playerVel.mag() / 3);
+
+  pos = pos.clone();
+  pos = pos.add(new Vec2(0, 8 * (1.0 - Math.abs(t))));
+  move(pos);
+
+  ctx.rotate(0.2 * t);
+
+  rect(new Vec2(0, 0), Vec2.x2(50), "snow");
+  circ(new Vec2(0,  25), new Vec2(50/2-0.4, 25/2), "snow");
+  circ(new Vec2(0, -25), new Vec2(50/2-0.4, 25/2), "snow");
+  circ(new Vec2(0, -25), new Vec2(50/2-0.4, 25/2).mulf(0.8), "slategray");
+  ctx.beginPath();
+    ctx.ellipse(20, 0, 20, 23, 0, Math.PI*1.5, Math.PI*0.5);
+    ctx.lineWidth = 8;
+    ctx.strokeStyle = "snow";
+  ctx.stroke();
+  circ(new Vec2( 10, 5), Vec2.x2(4), "darkslateblue");
+  circ(new Vec2(-10, 5), Vec2.x2(4), "darkslateblue");
+  ctx.beginPath();
+    ctx.moveTo( 10, 18);
+    ctx.lineTo(  0, 13);
+    ctx.lineTo(-10, 18);
+    ctx.lineWidth = 3;
+    ctx.strokeStyle = "darkslateblue";
+  ctx.stroke();
+  ctx.restore();
+}
+
+const canvas = document.getElementsByTagName("canvas")[0];
+const ctx = canvas.getContext("2d");
+let playerPos = new Vec2();
+let playerVel = new Vec2();
+let ctxSize = new Vec2();
+
+(window.onresize = () => {
+  ctxSize.x = canvas.width = window.innerWidth;
+  ctxSize.y = canvas.height = window.innerHeight;
+})();
+
+const textRows = [
+  {
+    from: new Vec2(-112.5, -300),
+    to:   new Vec2(-500, -250),
+    text: "zach"
+  },
+  {
+    from: new Vec2( 275,   -250),
+    to:   new Vec2(-112.5, -200),
+    text: "latte"
+  },
+  {
+    from: new Vec2( 135, 325),
+    to:   new Vec2(-520, 375),
+    text: "unlikely"
+  },
+  {
+    to:   new Vec2(   0, 155),
+    from: new Vec2( 400, 275),
+    text: "hero?"
+  }
+];
+function advanceLetter() {
+  if (!textRows.length) return undefined;
+  const tr = textRows[0];
+  if (!tr.chars) tr.chars = [...tr.text];
+  const letter = tr.chars.shift();
+  if (!tr.chars.length) textRows.shift();
+  const prog = tr.chars.length / tr.text.length;
+  return { letter, pos: tr.from.lerp(tr.to, prog) }
+}
+
+let last, acc = 0, ticks = 0, nextLetter = 0;
+
+const ents = [];
+const LETTER_FONT = '120px serif';
+class Letter {
+  constructor({letter, pos}) {
+    this.letter = letter.toUpperCase();
+    this.madeOn = ticks;
+
+    ctx.font = LETTER_FONT;
+    const { width } = ctx.measureText(this.letter);
+    this.pos = pos.clone();
+    this.letterPos = pos.sub(new Vec2(width/2, 0));
+  }
+
+  tick() {
+  }
+
+  draw() {
+    const { letterPos, pos, letter } = this;
+    const delta = ticks - this.madeOn;
+    const scale = Math.min(1, delta / 100);
+    return [
+      { index: -1 , draw() {
+        circ(pos, new Vec2(50, 20).mulf(scale), "#336666");
+      }},
+      { index: 0, draw() {
+        ctx.save();
+        ctx.scale(scale, scale);
+        ctx.font = LETTER_FONT;
+        ctx.fillStyle = "darkslategray";
+        ctx.fillText(letter, letterPos.x - 2, letterPos.y + 2);
+        ctx.fillStyle = "darkslateblue";
+        ctx.fillText(letter, letterPos.x    , letterPos.y    );
+        ctx.restore();
+      }},
+    ];
+  }
+}
+
+function tick() {
+  ticks++;
+
+  let mov = new Vec2();
+
+  if (keys.has('w')) mov.y -= 1;
+  if (keys.has('a')) mov.x -= 1;
+  if (keys.has('s')) mov.y += 1;
+  if (keys.has('d')) mov.x += 1;
+  mov = mov.norm().mulf(2.1);
+  playerVel = playerVel.add(mov).mulf(0.8);
+  playerPos = playerPos.add(playerVel);
+
+  for (const ent of ents) {
+    let delta = ent.pos.sub(playerPos);
+    let depth = delta.mag() - 100;
+    if (depth < 0)
+      playerPos = playerPos.add(delta.norm().mulf(depth));
+  }
+
+  nextLetter--;
+  if (nextLetter <= 0) {
+    nextLetter = 30;
+    const letter = advanceLetter();
+    if (letter) ents.push(new Letter(letter));
+  }
+
+  for (const ent of ents) ent.tick();
+}
+
+const keys = new Set();
+window.onkeydown = ev => keys.add(ev.key);
+window.onkeyup = ev => keys.delete(ev.key);
+
+let cam = new Vec2();
+await new Promise(res => {
+  let active = true;
+  requestAnimationFrame(function clickMeDraw(now) {
+    rect(ctxSize.divf(2), ctxSize, "teal");
+    ctx.save();
+    move(ctxSize.divf(2));
+    ctx.font = "240px serif";
+    ctx.fillStyle = "turquoise";
+    ctx.fillText("click me!", -450 + 20 * Math.sin(now * 0.003), 80);
+    ctx.restore();
+
+    if (active) requestAnimationFrame(clickMeDraw);
+  });
+
+  window.onclick = () => {
+    active = false;
+    res();
+  }
+});
+requestAnimationFrame(function draw(now) {
+  last = last ?? now;
+  acc += now - last;
+  while (acc >= 1000/60)
+    tick(), acc -= 1000/60;
+  last = now;
+
+  rect(ctxSize.divf(2), ctxSize, "teal");
+
+  ctx.save();
+  move(ctxSize.divf(2));
+
+  cam = cam.lerp(playerPos, 0.35);
+  move(cam.mulf(-1));
+
+  if (!textRows.length) {
+    ctx.font = "24px serif";
+    ctx.fillStyle = "turquoise";
+    ctx.fillText("WASD", -30 + 20 * Math.sin(now * 0.003), 80);
+  }
+
+  drawLatte(playerPos);
+  const draws = ents.map(x => x.draw()).flat();
+  draws.sort((a, b) => a.index - b.index);
+  for (const draw of draws) draw.draw();
+  ctx.restore();
+
+  requestAnimationFrame(draw);
+});
+      }
+    </script>
+  </head>
+
+  <body>
+    <canvas></canvas>
+  </body>
+</html>
