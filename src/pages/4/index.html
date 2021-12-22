@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 4</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            transition-duration: 200ms;
+        }
+
+        body {
+            margin: 0;
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        const createWindow = (windowId, windowName = "", height = "h-[60vh]", width = "w-[60vw]") => {
+            const window = document.createElement("section")
+            window.className = height + " " + width + " bg-white rounded-lg z-50 absolute self-center top-auto bottom-auto shadow-2xl flex flex-col"
+            window.id = windowId
+
+            const strip = createStrip(windowId, windowName)
+            window.appendChild(strip)
+
+            return window
+        }
+
+        const createStrip = (windowId, windowName = "") => {
+            const strip = document.createElement("div")
+            strip.className = "w-full px-5 py-2 flex flex-row items-center space-x-5"
+
+            const name = document.createElement("p")
+            name.textContent = windowName
+            name.className = "font-bold"
+            strip.appendChild(name)
+
+            const close = document.createElement("button")
+            close.textContent = "Close"
+            close.className = "px-2 border rounded-full hover:border-red-400"
+            close.onclick = function(){
+                const element = document.getElementById(windowId);
+                element.innerHTML = "";
+                element.outerHTML = "";
+            }
+            strip.appendChild(close)
+
+            return strip
+        }
+
+        const showWindow = (window) => {
+            const windows = document.getElementById("windows")
+            windows.appendChild(window)
+        }
+
+        const openPage = (src, pageName) => {
+            const window = createWindow("page", pageName)
+
+            const frame = document.createElement("iframe")
+            frame.className = "h-full w-full"
+            frame.src = src
+            window.appendChild(frame)
+
+            showWindow(window)
+        }
+
+        const openFile = () => {
+            const file = createWindow("file", "master plan_FINAL FINAL V2.txt (read-only)", height="h-[80vh]", width="w-[50vw]")
+
+            const content = document.createElement("p")
+            content.className = "h-full w-full px-5 pb-5 font-mono overflow-scroll"
+            content.innerHTML = `
+            <p>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⣴⣶⣿⣿⣷⣶⣄⣀⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀</p>
+            <p>⠀⠀⠀⠀⠀⠀⠀⠀⠀⣰⣾⣿⣿⡿⢿⣿⣿⣿⣿⣿⣿⣿⣷⣦⡀⠀⠀⠀⠀⠀</p>
+            <p>⠀⠀⠀⠀⠀⠀⠀⢀⣾⣿⣿⡟⠁⣰⣿⣿⣿⡿⠿⠻⠿⣿⣿⣿⣿⣧⠀⠀⠀⠀</p>
+            <p>⠀⠀⠀⠀⠀⠀⠀⣾⣿⣿⠏⠀⣴⣿⣿⣿⠉⠀⠀⠀⠀⠀⠈⢻⣿⣿⣇⠀⠀⠀</p>
+            <p>⠀⠀⠀⠀⢀⣠⣼⣿⣿⡏⠀⢠⣿⣿⣿⠇⠀⠀⠀⠀⠀⠀⠀⠈⣿⣿⣿⡀⠀⠀</p>
+            <p>⠀⠀⠀⣰⣿⣿⣿⣿⣿⡇⠀⢸⣿⣿⣿⡀⠀⠀⠀⠀⠀⠀⠀⠀⣿⣿⣿⡇⠀⠀</p>
+            <p>⠀⠀⢰⣿⣿⡿⣿⣿⣿⡇⠀⠘⣿⣿⣿⣧⠀⠀⠀⠀⠀⠀⢀⣸⣿⣿⣿⠁⠀⠀</p>
+            <p>⠀⠀⣿⣿⣿⠁⣿⣿⣿⡇⠀⠀⠻⣿⣿⣿⣷⣶⣶⣶⣶⣶⣿⣿⣿⣿⠃⠀⠀⠀</p>
+            <p>⠀⢰⣿⣿⡇⠀⣿⣿⣿⠀⠀⠀⠀⠈⠻⣿⣿⣿⣿⣿⣿⣿⣿⣿⠟⠁⠀⠀⠀⠀</p>
+            <p>⠀⢸⣿⣿⡇⠀⣿⣿⣿⠀⠀⠀⠀⠀⠀⠀⠉⠛⠛⠛⠉⢉⣿⣿⠀⠀⠀⠀⠀⠀</p>
+            <p>⠀⢸⣿⣿⣇⠀⣿⣿⣿⠀⠀⠀⠀⠀⢀⣤⣤⣤⡀⠀⠀⢸⣿⣿⣿⣷⣦⠀⠀⠀</p>
+            <p>⠀⠀⢻⣿⣿⣶⣿⣿⣿⠀⠀⠀⠀⠀⠈⠻⣿⣿⣿⣦⡀⠀⠉⠉⠻⣿⣿⡇⠀⠀</p>
+            <p>⠀⠀⠀⠛⠿⣿⣿⣿⣿⣷⣤⡀⠀⠀⠀⠀⠈⠹⣿⣿⣇⣀⠀⣠⣾⣿⣿⡇⠀⠀</p>
+            <p>⠀⠀⠀⠀⠀⠀⠀⠹⣿⣿⣿⣿⣦⣤⣤⣤⣤⣾⣿⣿⣿⣿⣿⣿⣿⣿⡟⠀⠀⠀ <i>Hey, who keeps putting</i></p>
+            <p>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠻⢿⣿⣿⣿⣿⣿⣿⠿⠋⠉⠛⠋⠉⠉⠁⠀⠀⠀⠀ <i>this? </i></p>
+            <p>⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠉⠉⠉⠁</p>
+            </br>
+            <h1>=== HACK CLUB TAKEOVER ===</h1>
+            <p>Hack Club -> lots of talented people -> more manpower to take over the world!</p>
+            <br /><br />
+            <h1>=== MASTER PLAN ===</h1>
+            <ol>
+                <li>- Get into Hack Club HQ</li>
+                <li>- Get everyone's addresses</li>
+                <li>- Send our Super Secret Brain Connector in a package to everyone</li>
+                <li>- Everyone will be confused, but curiosity will lead them to put it on</li>
+                <li>- Profit: get the skills of everyone connected and take over the world!</li>
+            </ol>
+            <br />
+            <h1>=== DETAILS ===</h1>
+            <p>Use the Braingate as a channel for communication -> dangerous? remember to take necessary precautions when using it</p>
+            <p>When: Christmas? Possible gatherings -> easy to sneak in and retrieve required info</p>
+            <br />
+            <p><i>I don't know if this is a good idea... -X</i></p>
+            `
+            file.appendChild(content)
+
+            showWindow(file)
+        }
+
+        const openVault = () => {
+            const vault = createWindow("vault", "Vault")
+
+            const body = document.createElement("div")
+            body.className = "p-5 h-full space-y-5 flex flex-col"
+
+            const greeting = document.createElement("h1")
+            const hour = (new Date()).getHours()
+            greeting.className = "text-4xl font-bold"
+            greeting.textContent = "Good " + ((hour > 0 && hour < 12) ? "morning" : (hour >= 12 && hour < 18) ? "afternoon" : "evening") + ", Zach Latte!"
+            body.appendChild(greeting)
+
+            const files = document.createElement("div")
+            const fileNames = ["evil pitch plan.pptx", "master plan_FINAL.txt", "important information.pdf", "master plan_FINAL V2.txt"]
+            files.className = "flex-grow w-full grid grid-cols-5 grid-rows-2"
+            body.appendChild(files)
+            fileNames.map((fileName, index) => {
+                const file = document.createElement("button")
+                file.type = "button"
+                file.onclick = function() {
+                    if (index === 3) {
+                        openFile()
+                    } else {
+                        alert("This file is in the Bin. To access it, please restore it and try again.")
+                    }
+                }
+
+                const fileDiv = document.createElement("div")
+                fileDiv.className = "m-5 p-2 flex flex-col justify-center items-center text-center hover:bg-black/10 transition-colors rounded-lg"
+
+                const fileIcon = document.createElement("img")
+                fileIcon.src = "file.svg"
+                fileDiv.appendChild(fileIcon)
+
+                const fileTitle = document.createElement("p")
+                fileTitle.textContent = fileName
+                fileDiv.appendChild(fileTitle)
+
+                file.appendChild(fileDiv)
+                files.appendChild(file)
+            })
+            vault.appendChild(body)
+
+            showWindow(vault)
+        }
+    </script>
+</head>
+
+<body class="bg-[#f4f7f8]">
+    <img src="mewmew.jpg" loading="lazy" class="h-screen w-screen object-contain" />
+    <main class="h-screen flex flex-col absolute justify-center items-center top-0" id="windows">
+        <section class="w-screen flex-grow grid grid-cols-12 grid-rows-5">
+            <button type="button" onclick="openPage('../1/index.html', 'cuppa')">
+                <div
+                    class="m-5 p-2 flex flex-col justify-center items-center text-center hover:bg-black/10 transition-colors rounded-lg">
+                    <img src="metaverse.svg" />
+                    <p>metaverse</p>
+                </div>
+            </button>
+            <button type="button" onclick="openPage('../2/index.html', 'cuppa')">
+                <div class="m-5 p-2 flex flex-col justify-center items-center text-center hover:bg-black/10 transition-colors rounded-lg">
+                    <img src="Braingate.svg" />
+                    <p>braingate</p>
+                </div>
+            </button>
+            <button type="button" onclick="openPage('../3/index.html', 'cuppa')">
+                <div
+                    class="m-5 p-2 flex flex-col justify-center items-center text-center hover:bg-black/10 transition-colors rounded-lg">
+                    <img src="cup.svg" />
+                    <p>cuppa</p>
+                </div>
+            </button>
+            <button type="button" onclick="openVault()">
+                <div
+                    class="m-5 p-2 flex flex-col justify-center items-center text-center hover:bg-black/10 transition-colors rounded-lg">
+                    <img src="Vault.svg" />
+                    <p>vault</p>
+                </div>
+            </button>
+        </section>
+        <section class="h-16 bg-white/75 w-screen flex justify-center items-center space-x-5">
+            <img src="DoorsOS.svg" class="object-scale-down h-16 p-2 hover:bg-black/10 transition-colors" />
+        </section>
+    </main>
+</body>
+
+</html>
