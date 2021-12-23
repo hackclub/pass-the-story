@@ -1,0 +1,140 @@
+body{
+  background-color: rgb(20,20,20);
+  margin: 0px;
+  color: white;
+  text-align: center;
+}
+
+h1{
+  color: white;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-left: 200px;
+  margin-top: 200px;
+}
+
+img{
+  width: 400px;
+  height: 400px;
+  border-radius: 20px;
+  filter: drop-shadow(0 0 0.75rem black);
+  float: right;
+}
+
+.bigimg {
+  margin-right: 20%;
+}
+
+button {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-top: 20px;
+  margin-left: 38%;
+  border-radius: 20px;
+  background-color: orangered;
+  font-size: 16px;
+  padding: 10px;
+  filter: drop-shadow(0 0 0.75rem black);
+  float: left;
+  border: none;
+}
+
+button:hover {
+  animation: login 1s forwards;
+}
+
+input {
+  margin-top: 200px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-left: 38%;
+  border-radius: 20px;
+  background-color: orangered;
+  font-size: 16px;
+  padding: 10px;
+  filter: drop-shadow(0 0 0.75rem black);
+  border: none;
+  float: left;
+}
+
+.menu{
+  background-color:rgb(50,50,50);
+  position: fixed;
+  width: 100%;
+  top: 0px;
+  filter: drop-shadow(0 0 0.75rem black);
+}
+
+.menu h3:hover {
+  animation: hover 1s forwards;
+  border-radius: 5px;
+}
+
+.logo {
+  width: 35px;
+  height: 35px;
+  float: left;
+  padding: 16px 16px;
+}
+
+h2{
+  font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  text-align: center;
+  padding: 11px 16px;
+  text-decoration: none;
+  font-size: 17px;
+  float: left;
+  font-weight: bold;
+
+}
+
+h3{
+    font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 17px;
+    float: left;
+}
+
+@keyframes hover {
+  from {}
+  to {background-color: rgb(25, 25, 25);}
+}
+
+@keyframes login {
+  from {}
+  to {filter: drop-shadow(0 0 5px orangered);}
+}
+
+.notes {
+  color: black;
+  font-family: monospace;
+  overflow: hidden;
+  position: absolute;
+  background-color: lightyellow;
+  border-radius: 20px;
+  padding: 10px;
+  padding-top: 0px;
+  cursor: move;
+  filter: drop-shadow(0 0 1rem black);
+}
+
+.reddot {
+  height: 10px;
+  width: 10px;
+  background-color: red;
+  border-radius: 50%;
+  float: right;
+  margin-left: 10px;
+  margin-top: 0px;
+}
+
+.greendot {
+  height: 10px;
+  width: 10px;
+  background-color: green;
+  border-radius: 50%;
+  float: right;
+  margin-top: 0px;
+}
+
+.h4 {
+  float: left;
+}
