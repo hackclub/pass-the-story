@@ -1,0 +1,140 @@
+* {
+    color: white;
+}
+
+h1 {
+    font-size: 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.title {
+    font-size: 0px;
+}
+
+body {
+    background-color: rgb(20, 20, 20);
+    margin: 0px;
+}
+
+.post {
+    background-color: rgb(50, 50, 50);
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    text-align: center;
+    overflow: hidden;
+    filter: drop-shadow(0 0 0.75rem black);
+    
+}
+
+.post:hover {
+  animation: shadow 2s forwards;
+}
+.content {
+    width: 400px;
+    height: 400px;
+}
+
+.icon {
+    padding-left: 15px;
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    margin-top: 10px;
+    text-align: left;
+    float: left;
+}
+
+.pfp {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+h3 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    text-align: center;
+    padding: 8px 16px;
+    font-size: 17px;
+    float: left;
+}
+
+.username {
+    margin-left: 10px;
+    text-align: left;
+}
+
+.icon:hover {
+    animation: shadow 0.1s forwards;
+}
+.menu {
+    background-color: rgb(50, 50, 50);
+    position: fixed;
+    width: 100%;
+    top: 0px;
+    filter: drop-shadow(0 0 0.75rem black);
+}
+
+.menu h3:hover {
+    animation: hover 1s forwards;
+    border-radius: 5px;
+}
+
+.menu a:hover {
+    animation: hover 1s forwards;
+    border-radius: 5px;
+}
+
+p {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+    float: left;
+    margin-left: 25px;
+    margin-top: 0px;
+    font-weight: 600;
+}
+
+h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    text-align: center;
+    padding: 11px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    float: left;
+    font-weight: bold;
+}
+
+.logo {
+    width: 35px;
+    height: 35px;
+    float: left;
+    padding: 16px 16px;
+    filter: drop-shadow(0 0 0.75rem black);
+}
+
+.idontfuckingknow {
+    margin-top: 200px;
+}
+
+@keyframes shadow {
+  from {}
+  to {filter: drop-shadow(0 0 9px black);}
+}
+
+@keyframes hover {
+  from {}
+  to {background-color: rgb(25, 25, 25);}
+}
+
+a {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  text-align: center;
+  padding: 8px 16px;
+  margin: 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
