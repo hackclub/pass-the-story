@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="./style.css" />
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,800,300' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    </head>
+    <body class="body_one">
+        <div class="header">
+            <div class="inner_header">
+                <div class="logo_container">
+                    <span class="helper"></span><img src='./Spotify.png' height=40 />
+                </div>
+
+                <div class="profile_container">
+                    <a href="./profilePage.html">
+                        <span class="helper"></span><img src='./ProfilePhoto.png' height=50 />
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="music_container">
+            <div class="music_info">
+                <h4 id="title">Joker</h4>
+                <div class="progress-container">
+                    <div class="progress"></div>
+                </div>
+            </div>
+
+            <audio src="music/Joker.mp3"></audio>
+
+            <div class="img_container">
+                <img src="images/Joker.png" alt="music-cover">
+            </div>
+
+            <div class="navigation">
+                <button id="prev" class="action-btn">
+                    <i class="fas fa-backward"></i>
+                </button>
+                <button id="play" class="action-btn action-btn-big">
+                    <i class="fas fa-play"></i>
+                </button>
+                <button id="next" class="action-btn">
+                    <i class="fas fa-forward"></i>
+                </button>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>
