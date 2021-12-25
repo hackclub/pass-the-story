@@ -1,0 +1,60 @@
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+
+      <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+
+      <a-assets>
+        <audio id="beyoncemusic" src="Beyonce.mp3"></audio>
+      </a-assets>
+
+      <a-text 
+        value="Welcome to the Metaverse... (WASD to move and use mouse to move camera)"
+        color="green"
+        align="center"
+        position="0 2 -3"
+        scale="1.5 1.5 1.5">
+      </a-text>
+
+      <a-text 
+        value="Why is this place so dark??"
+        color="green"
+        align="center"
+        position="10 1 -10"
+        scale="1.5 1.5 1.5">
+      </a-text>
+
+      <a-text 
+        value="Hmm i've got to figure out how to find the Braingate's graphic interface"
+        color="green"
+        align="center"
+        position="-5 1 -20"
+        scale="1.5 1.5 1.5">
+      </a-text>
+
+       <a-text 
+        value="Let me see if i can do something in the terminal"
+        color="green"
+        align="center"
+        position="5 1 -40"
+        scale="1.5 1.5 1.5">
+      </a-text>
+
+
+       <a-sound src="#beyoncemusic" autoplay="true" position="0 0 0"></a-sound>
+
+
+      <a-sky color="#000000"></a-sky>
+
+
+
+      <a-camera>
+        <a-cursor color="red"></a-cursor>
+      </a-camera>
+
+    </a-scene>
+  </body>
+</html>

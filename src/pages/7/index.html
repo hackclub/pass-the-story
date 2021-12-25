@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Day 7</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            transition-duration: 200ms;
+        }
+        body::after, section::after {
+          content: " ";
+          display: block;
+          position: fixed;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          background: rgba(18, 16, 16, 0.1);
+          opacity: 0;
+          z-index: 2;
+          pointer-events: none;
+          animation: flicker 0.15s infinite;
+        }
+        body::before, section::before {
+          content: " ";
+          display: block;
+          position: fixed;
+          top: 0;
+          left: 0;
+          bottom: 0;
+          right: 0;
+          background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+          z-index: 2;
+          background-size: 100% 2px, 3px 100%;
+          pointer-events: none;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .sectionTitle p {
+            font-size: 15px;
+            font-family: "jetbrains_monobold" !important;
+        }
+        p {
+            font-size: 12px;
+            font-family: "jetbrains_monoregular" !important;
+        }
+
+        button{
+            font-size: 15px !important;
+            font-family: "jetbrains_monoregular" !important;
+
+        }
+
+        h1{
+            font-size: 20px;
+            font-family: "jetbrains_monobold" !important;
+        }
+
+        @font-face {
+    font-family: 'jetbrains_monoregular';
+    src: url('jetbrainsmono-regular-webfont.woff2') format('woff2'),
+         url('jetbrainsmono-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+        }
+        @font-face {
+            font-family: 'jetbrains_monobold';
+            src: url('jetbrainsmono-bold-webfont.woff2') format('woff2'),
+                 url('jetbrainsmono-bold-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+
+        @font-face {
+            font-family: 'jetbrains_monobold_italic';
+            src: url('jetbrainsmono-bolditalic-webfont.woff2') format('woff2'),
+                 url('jetbrainsmono-bolditalic-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+
+        }
+    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script>
+        const createWindow = (windowId, windowName = "", height = "h-[60vh]", width = "w-[60vw]") => {
+            const window = document.createElement("section")
+            window.className = height + " " + width + " bg-[#62866F] rounded-lg z-50 absolute self-center top-auto bottom-auto shadow-2xl flex flex-col"
+            window.id = windowId
+
+            const strip = createStrip(windowId, windowName)
+            window.appendChild(strip)
+
+            return window
+        }
+
+        const createStrip = (windowId, windowName = "") => {
+            const strip = document.createElement("div")
+            strip.className = "w-full px-5 py-2 flex flex-row items-center space-x-5"
+
+            const close = document.createElement("button")
+            close.textContent = "x"
+            close.onclick = function(){
+                const element = document.getElementById(windowId);
+                element.innerHTML = "";
+                element.outerHTML = "";
+            }
+            strip.appendChild(close)
+
+            const name = document.createElement("p")
+            name.textContent = windowName
+            name.className = "font-bold sectionTitle"
+            strip.appendChild(name)
+
+            return strip
+        }
+
+        const showWindow = (window) => {
+            const windows = document.getElementById("windows")
+            windows.appendChild(window)
+        }
+
+        const openPage = (src, pageName) => {
+            const window = createWindow("page", pageName)
+
+            const frame = document.createElement("iframe")
+            frame.className = "h-full w-full"
+            frame.src = src
+            window.appendChild(frame)
+
+            showWindow(window)
+        }
+
+        const openFile = () => {
+            const file = createWindow("file", "Plan to avoid Hack club takeover.txt (read-only)", height="h-[80vh]", width="w-[50vw]")
+
+            const content = document.createElement("p")
+            content.className = "h-full w-full px-5 pb-5 font-mono overflow-scroll"
+            content.innerHTML = `
+            </br>
+            <h1>=== PLAN TO AVOID HACK CLUB TAKEOVER ===</h1>
+            <p>If i want to avoid this, i have to do something right now!</p>
+            <br /><br />
+            <h1>=== THE PLAN ===</h1>
+            <ol>
+                <li>- Get into Latte's brain and change his mind</li>
+            </ol>
+            <br />
+            <p>Woahhh is this the whole plan? -- I don't even know if it's going to work D:</p>
+            <br />
+            <h1>=== HOW TO EXECUTE IT ===</h1>
+            <p>Enter Braingate's graphical interface through the metaverse and then find Latte's brain</p>
+            `
+            file.appendChild(content)
+
+            showWindow(file)
+        }
+
+        const openVault = () => {
+            const vault = createWindow("vault", "Vault")
+
+            const body = document.createElement("div")
+            body.className = "p-5 h-full space-y-5 flex flex-col"
+
+            const greeting = document.createElement("h1")
+            greeting.textContent = "Hey there, Erik Z!"
+            body.appendChild(greeting)
+
+            const files = document.createElement("div")
+            const fileNames = ["Plan to avoid Hack Club takeover.txt"]
+            files.className = "flex-grow w-full grid grid-cols-5 grid-rows-2"
+            body.appendChild(files)
+            fileNames.map((fileName, index) => {
+                const file = document.createElement("button")
+                file.type = "button"
+                file.onclick = function() {
+                    if (index === 0) {
+                        openFile()
+                    } else {
+                        alert("This file is in the Bin. To access it, please restore it and try again.")
+                    }
+                }
+
+                const fileDiv = document.createElement("div")
+                fileDiv.className = "m-5 p-2 flex flex-col justify-center items-center text-center hover:bg-black/10 transition-colors rounded-lg"
+
+                const fileIcon = document.createElement("img")
+                fileIcon.src = "file.svg"
+                fileDiv.appendChild(fileIcon)
+
+                const fileTitle = document.createElement("p")
+                fileTitle.textContent = fileName
+                fileDiv.appendChild(fileTitle)
+
+                file.appendChild(fileDiv)
+                files.appendChild(file)
+            })
+            vault.appendChild(body)
+
+            showWindow(vault)
+        }
+    </script>
+</head>
+
+<body class="bg-[#222627]">
+    <img src="wallpaper.png" loading="lazy" class="h-screen w-screen object-contain" />
+    <main class="h-screen flex flex-col absolute justify-center items-center top-0" id="windows">
+        <section class="w-screen flex-grow grid grid-cols-12 grid-rows-5">
+            <button type="button" onclick="openPage('../7/braingateGI.html', 'Metaverse (Use WASD)')">
+                <div
+                    class="m-5 p-2 flex flex-col justify-center items-center text-center hover:bg-[#82AA85]/10 transition-colors rounded-lg">
+                    <img src="metaverse.png" />
+                    <p class="text-[#597560]">Metaverse</p>
+                </div>
+            </button>
+            <button type="button" onclick="openPage('../2/index.html', 'braingate')">
+                <div class="m-5 p-2 flex flex-col justify-center items-center text-center hover:bg-[#82AA85]/10 transition-colors rounded-lg">
+                    <img src="Braingate.png" />
+                    <p class="text-[#597560]">Braingate</p>
+                </div>
+            </button>
+            <button type="button" onclick="openVault()">
+                <div
+                    class="m-5 p-2 flex flex-col justify-center items-center text-center hover:bg-[#82AA85]/10 transition-colors rounded-lg">
+                    <img src="Vault.png" />
+                    <p class="text-[#597560]">Files</p>
+                </div>
+            </button>
+        </section>
+    </main>
+</body>
+
+</html>
