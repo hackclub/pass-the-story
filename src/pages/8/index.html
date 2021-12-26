@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>page template</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+      }
+      .story {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+          Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+        font-size: 1.5rem;
+        -webkit-animation: bgcolor 10s infinite;
+        animation: bgcolor 1.5s infinite;
+        -webkit-animation-direction: alternate;
+        animation-direction: alternate;
+      }
+      .image {
+        align-self: center;
+        flex-grow: 1;
+        max-height: 25%;
+        max-width: 25%;
+        animation: rotation 1s infinite linear;
+      }
+
+      .backimg {
+        align-self: center;
+        flex-grow: 1;
+        max-height: 25%;
+        max-width: 25%;
+        animation: backrotate 2s infinite linear;
+      }
+
+      @keyframes rotation {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(359deg);
+        }
+      }
+
+      @keyframes backrotate {
+        from {
+          transform: rotate(359deg);
+        }
+        to {
+          transform: rotate(0deg);
+        }
+      }
+
+      @keyframes bgcolor {  // Thanks:https://stackoverflow.com/questions/14207922/javascript-error-null-is-not-an-object
+          0% {
+              background-color: #45a3e5
+          }
+
+          30% {
+              background-color: #66bf39
+          }
+
+          60% {
+              background-color: #eb670f
+          }
+
+          90% {
+              background-color: #f35
+          }
+
+          100% {
+              background-color: #864cbf
+          }
+      }
+
+      .content {
+          -webkit-animation: bgcolor 20s infinite;
+          animation: bgcolor 10s infinite;
+          -webkit-animation-direction: alternate;
+          animation-direction: alternate;
+          display: flex;
+          flex-direction: column;
+          height: 100vh;
+          padding: 2rem 4rem;
+          gap: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="content">
+      <!-- add an image here by replacing the src attribute with your image link -->
+
+      <img
+        class="backimg"
+        src="https://github.com/hackclub/dinosaurs/raw/main/confused_dinosaur.png"
+      />
+      <!-- add a few sentences here to continue the story -->
+      <div class="story">
+      <p>"What's that?" asks a dinosaur, pointing at a human logged in the metaverse in real life.</p>
+      <p>"That?" answers another, "that's a thing that's logged into a platform also known as the metaverse that's designed to capture your attention and somehow make you a follower of a cult thingy called web3"</p> <!-- 🔥 -->
+      <p>"oh yea i sold a png of my face for more than the gdp of the superstate of eurasia to that cult"</p> <!-- https://en.wikipedia.org/wiki/Political_geography_of_Nineteen_Eighty-Four -->
+      <p>The third dino shrugs, "want to go help hack club?"</p>
+      </div>
+
+      <img
+        class="image"
+        src="https://github.com/hackclub/dinosaurs/raw/main/club_dinosaur.png"
+      />
+      <img
+        class="backimg"
+        src="https://github.com/hackclub/dinosaurs/raw/main/dino_in_a_box_v2.png"
+      />
+    </div>
+  </body>
+</html>
