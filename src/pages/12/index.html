@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    body,
+    html {
+      margin: 0;
+      padding: 0;
+      max-width: 100vw;
+      max-height: 100vh;
+    }
+    .flavor {
+      position: fixed;
+      bottom: 90px;
+      left: 70px;
+      transform: translateX(-50px);
+      font-family: "Comic Sans MS", arial;
+      font-size: 18px;
+      color: black;
+    }
+    canvas {
+      overflow: hidden;
+    }
+  </style>
+  <body>
+    <canvas></canvas>
+    <div class="flavor">
+      <p>The dino reaps its energy from your attention.</p>
+      <p>For every second you honor the dino, she gains 1 energy point.</p>
+      <p>
+        The dino has
+        <span class="time">0</span> energy points.
+      </p>
+    </div>
+    <script src="./index.js"></script>
+  </body>
+</html>
