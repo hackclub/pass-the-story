@@ -1,0 +1,72 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FireWorks Display</title>
+    <style>
+      html, body {
+        height: 100%;
+        width: 100%;
+        background: rgb(63,94,251);
+background: linear-gradient(90deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
+      }
+
+      body {
+        margin: 0 auto;
+        text-align: center;
+      }
+    </style>
+    <script>
+      function ar() {
+        document.getElementById('hideaway').style.display='none'
+      }
+    </script>
+  </head>
+  <body>
+    <div class="user-input">
+
+      <h1 style=> Dino's Fireworks</h1>
+      <small> We have a lot of planning to do, though it's new years eve</small>
+      <small> Enjoy the show,though wait I have something for you. Do you want to see it? </small> <br>
+      <h3 href="javascript:;" onClick="document.getElementById('hideaway').style.display='block';" style="color:blue">View my serect plan  (I'm clickable)</h3> 
+        <div id="hideaway" style="display:none;">
+          <h1> Plan to save HC</h1>
+          <br>
+          <p> Hello Erik,
+
+            Zach Latte will strike tommrow... <br>
+            You're going to have to enter his brain
+            <br>
+            The code is: 1234
+
+    <br>
+
+    Once you're there,  you need to change his thoughts.
+    <br>
+
+    
+    You only have 4 days, or HC will be gone...
+    <br>
+    <a href="javascript:;" onClick="document.getElementById('hideaway').style.display='none';" onclick="ar()">Got it? Enjoy the show. we will meet tommrow..</a>
+
+          </p>
+        
+        </div>
+      </small>
+      <br>
+      <label for="fireWorkCount">Number of FireWorks</label>
+
+      <select name="fireWorkCount" id="fireWorkCount">
+        <option value="1" >1</option>
+        <option value="5" >5</option>
+        <option value="10" selected>10</option>
+        <option value="20">20</option>
+        <option value="30">30</option>
+        <option value="40">40</option>
+        <option value="50">50</option>
+      </select>
+    </div>
+    <script src="index.js"></script>
+
+  </body>
+</html>
