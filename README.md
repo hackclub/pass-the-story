@@ -1,6 +1,8 @@
 # pass the story
 
-A collaborative effort where hack clubs and hackclubbers can build a website to tell a story together.
+A collaborative effort where hack clubs and hack clubbers built a website to tell a story together.
+
+Each hack clubber who participated created a page to continue the story. They were able to utilize their full creativity and make the page as simple or complex as they wished. The result was an awesome 14 page story detailing the adventure to defeat the evil Zach Latte.
 
 ## To get started
 
@@ -11,7 +13,7 @@ Each page of the story is created in a directory under `src/pages`, and each pag
    ![the go live button](golive.png)
    You should now see the site at https://localhost:5500.
 3. You're assigned a page number. Create a directory under `src/pages` with the number you are assigned. Add an `index.html` file and any css files you need.
-4. Add the page to the site by uncommenting the `section` in [`src/index.html`](https://github.com/maggie-j-liu/story/blob/main/src/index.html) that contains your page. For example, page 1 can be included by uncommenting
+4. Add the page to the site by uncommenting the `section` in [`src/index.html`](https://github.com/hackclub/pass-the-story/blob/main/src/index.html) that contains your page. For example, page 1 can be included by uncommenting
 
 ```html
 <!--
@@ -29,5 +31,5 @@ by removing the `<!--` and `-->` to leave
 </section>
 ```
 
-5. Continue the story created by others by adding some sentences and visuals to your page. If you would like a starting point, you can copy [`templates/template.html`](https://github.com/maggie-j-liu/story/blob/main/templates/template.html) and modify it!
+5. Continue the story created by others by adding some sentences and visuals to your page. If you would like a starting point, you can copy [`templates/template.html`](https://github.com/hackclub/pass-the-story/blob/main/templates/template.html) and modify it!
 6. [Create a pull request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to add your changes back to this repository.
